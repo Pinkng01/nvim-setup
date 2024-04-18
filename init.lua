@@ -9,15 +9,13 @@ vim.opt.undofile = true
 vim.opt.ignorecase = true
 vim.opt.updatetime = 250
 vim.opt.timeoutlen = 300
+vim.opt.cursorline = false
 
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
 --vim.opt.list = true
 --vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
-
--- highlights the line of cursor
-vim.opt.cursorline = false
 
 -- highlights the thing your cursor is on
 vim.opt.hlsearch = true
@@ -42,11 +40,6 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	end,
 })
 
--- ----------------------------------------------------------
-
--- [[ Install `lazy.nvim` plugin manager ]]
---    See `:help lazy.nvim.txt` or https://github.com/folke/lazy.nvim for more info
-
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
 	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
@@ -54,13 +47,12 @@ if not vim.loop.fs_stat(lazypath) then
 end ---@diagnostic disable-next-line: undefined-field
 vim.opt.rtp:prepend(lazypath)
 
--- -----------------------lazy plugs-----------------------------------
-
 require("lazy").setup("plugins")
 require("rose-pine").setup({
 	disable_background = true,
 })
 
+---------------------------------------rose-pine-custom-colors------------------------------------------
 function ColorMyPencils(color)
 	color = color or "rose-pine"
 	vim.cmd.colorscheme(color)
